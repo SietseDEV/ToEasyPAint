@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Paint App</title>
+    <style>
+      #canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script>
+      // Set up the canvas
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      ctx.lineWidth = 5;
+
+      // Set up event listeners
+      var painting = false;
+      canvas.addEventListener("mousedown", start);
+      canvas.addEventListener("mousemove", draw);
+      canvas.addEventListener("mouseup", stop);
+
+      // Start drawing
+      function start(event) {
+        painting = true;
+        draw(event);
+      }
+
+      // Draw a line
+      function draw(event) {
+        if (!painting) return;
+        ctx.lineTo(event.clientX, event.clientY);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(event.clientX, event.clientY);
+      }
+
+      // Stop drawing
+      function stop(event) {
+        painting = false;
+        ctx.beginPath();
+      }
+    </script>
+  </body>
+</html>
