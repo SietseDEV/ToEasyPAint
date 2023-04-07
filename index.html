@@ -29,6 +29,16 @@
       canvas.addEventListener("mousemove", draw);
       canvas.addEventListener("mouseup", stop);
 
+      // Resize canvas when the window is resized
+      window.addEventListener("resize", resizeCanvas);
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      resizeCanvas(); // resize canvas on load
+
       // Start drawing
       function start(event) {
         painting = true;
